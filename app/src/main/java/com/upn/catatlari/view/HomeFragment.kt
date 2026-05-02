@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.upn.catatlari.R
 import com.upn.catatlari.databinding.FragmentHomeBinding
 import com.upn.catatlari.viewmodel.RunViewModel
+import android.app.AlertDialog
 
 class HomeFragment : Fragment() {
 
@@ -36,7 +37,20 @@ class HomeFragment : Fragment() {
         binding.welcomingTxt.text = "Halo, ${user?.name ?: "User"}"
 
         // Setup Adapter
-        val adapter = RunAdapter()
+        val adapter = RunAdapter(onEditClick = { run ->
+            val bundle = Bundle().apply {
+                putParcelable("runEntity", run)
+            }
+            findNavController().navigate(R.id.action_homeFragment_to_addRunFragment, bundle)
+        },
+            onDeleteClick = { run ->
+                AlertDialog.Builder(requireContext())
+                    .setTitle("Hapus Data")
+                    .setMessage("Yakin ingin menghapus data lari ini?")
+                    .setPositiveButton("Hapus") { _, _ -> runViewModel.deleteRun(run) }
+                    .setNegativeButton("Batal", null)
+                    .show()
+            })
         binding.rvRunList.layoutManager = LinearLayoutManager(requireContext())
         binding.rvRunList.adapter = adapter
 
