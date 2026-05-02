@@ -1,9 +1,8 @@
 package com.upn.catatlari.view
 
-import android.os.Build
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -17,22 +16,27 @@ class MainActivity : AppCompatActivity() {
 
     var user: User? = null
 
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        user = intent.getParcelableExtra("user", User::class.java)
+        user = intent.getSerializableExtra("user") as? User
+
+        if (user == null) {
+            Toast.makeText(this, "User tidak ditemukan", Toast.LENGTH_SHORT).show()
+        }
 
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        // 1. Connect BottomNavigation with Navigation Controller
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+
         val navController = navHostFragment.navController
 
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_nav_menu)
