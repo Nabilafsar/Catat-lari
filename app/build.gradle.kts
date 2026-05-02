@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.android.application)
-    // kotlin-android DIHAPUS TOTAL
     alias(libs.plugins.ksp)
     alias(libs.plugins.navigation.safeargs)
     alias(libs.plugins.kotlin.parcelize)
