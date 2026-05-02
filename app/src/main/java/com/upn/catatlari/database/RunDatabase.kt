@@ -1,15 +1,16 @@
-package com.upn.catatlari.data
+package com.upn.catatlari.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.upn.catatlari.model.User
+import com.upn.catatlari.data.RunDao
+import com.upn.catatlari.model.RunEntity
 
-@Database(entities = [User::class], version = 1, exportSchema = false)
+@Database(entities = [RunEntity::class], version = 1, exportSchema = false)
 abstract class RunDatabase : RoomDatabase() {
 
-    abstract fun userDao(): UserDao
+    abstract fun runDao(): RunDao
 
     companion object {
         @Volatile
@@ -20,7 +21,7 @@ abstract class RunDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     RunDatabase::class.java,
-                    "user_db"
+                    "run_db"
                 ).build()
                 INSTANCE = instance
                 instance
