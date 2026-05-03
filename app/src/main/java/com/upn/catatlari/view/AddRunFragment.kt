@@ -28,6 +28,15 @@ class AddRunFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val existingRun = arguments?.getParcelable<RunEntity>("runEntity")
+
+        if (existingRun != null) {
+            binding.etDate.setText(existingRun.runDate)
+            binding.etRunDistance.setText(existingRun.runDistance.toString())
+            binding.etRunDuration.setText(existingRun.runDuration.toString())
+            binding.btnSaveRun.text = "Update"
+        }
+
         binding.btnSaveRun.setOnClickListener {
             val runDate = binding.etDate.text.toString().trim()
             val runDurationStr = binding.etRunDuration.text.toString().trim()
@@ -46,12 +55,12 @@ class AddRunFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            val runInput = RunEntity(
-                runDate = runDate,
-                runDuration = runDuration,
-                runDistance = runDistance
-            )
-            runViewModel.addRun(runInput)
+            if (existingRun != null) {
+                runViewModel.updateRun(RunEntity(existingRun.id, runDate, runDistance, runDuration))
+            } else {
+                runViewModel.addRun(RunEntity(runDate = runDate, runDistance = runDistance, runDuration = runDuration))
+            }
+
             findNavController().popBackStack()
         }
     }

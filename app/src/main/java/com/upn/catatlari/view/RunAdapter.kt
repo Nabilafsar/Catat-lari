@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.upn.catatlari.databinding.ItemRunBinding
 import com.upn.catatlari.model.RunEntity
 
-class RunAdapter() : RecyclerView.Adapter<RunAdapter.RunViewHolder>() {
+class RunAdapter(private val onEditClick: (RunEntity) -> Unit,
+                 private val onDeleteClick: (RunEntity) -> Unit
+) : RecyclerView.Adapter<RunAdapter.RunViewHolder>() {
 
     private var runList = mutableListOf<RunEntity>()
 
@@ -27,6 +29,8 @@ class RunAdapter() : RecyclerView.Adapter<RunAdapter.RunViewHolder>() {
             binding.txtRunDate.text = run.runDate
             binding.txtRunDistance.text = "${run.runDistance} M"
             binding.txtRunDuration.text = "${run.runDuration} menit"
+            binding.btnEdit.setOnClickListener { onEditClick(run) }
+            binding.btnDelete.setOnClickListener { onDeleteClick(run) }
         }
     }
 }

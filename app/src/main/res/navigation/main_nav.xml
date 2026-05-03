@@ -24,4 +24,9 @@
         android:name="com.upn.catatlari.view.ProfileFragment"
         android:label="Profile" />
 
+    <argument
+        android:name="runEntity"
+        app:argType="com.upn.catatlari.model.RunEntity"
+        app:nullable="true"
+        android:defaultValue="@null"/>
 </navigation>

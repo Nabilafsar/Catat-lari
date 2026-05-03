@@ -24,6 +24,12 @@ class RunViewModel(application: Application) : AndroidViewModel(application) {
     // READ
 
     // UPDATE
+    fun updateRun(run: RunEntity) {
+        viewModelScope.launch { runDao.updateRun(run) }
+    }
 
     // DELETE
+    fun deleteRun(run: RunEntity) {
+        viewModelScope.launch { runDao.deleteRun(run) }
+    }
 }
