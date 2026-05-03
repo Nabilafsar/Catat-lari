@@ -9,10 +9,10 @@
     tools:context=".view.HomeFragment">
 
     <TextView
-        android:id="@+id/welcoming_txt"
+        android:id="@+id/welcomingTxt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Halo, Zap!"
+        android:text="@string/halo_zap"
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,8 +23,8 @@
         android:layout_height="wrap_content"
         android:text="Apa kabarmu hari ini?"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@id/welcoming_txt"
-        app:layout_constraintTop_toBottomOf="@id/welcoming_txt"/>
+        app:layout_constraintStart_toStartOf="@id/welcomingTxt"
+        app:layout_constraintTop_toBottomOf="@id/welcomingTxt"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_btn_add_run"
