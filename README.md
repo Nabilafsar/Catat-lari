@@ -1,10 +1,10 @@
 # Aplikasi Catat Lari
 
 ## Developer
-Nabil Afsar Riswanda (24082010048)
-Miftah Farid (24082010066)
-Ariel Ardinnansyah (24082010073)
-Wahyu Nur Hakim (24082010077)
+- Nabil Afsar Riswanda (24082010048)
+- Miftah Farid (24082010066)
+- Ariel Ardinnansyah (24082010073)
+- Wahyu Nur Hakim (24082010077)
 
 ## 📝 Description
 Aplikasi Catat Lari adalah aplikasi Android yang dirancang untuk membantu pengguna dalam mencatat dan memantau
@@ -20,6 +20,6 @@ dalam berolahraga.
 
 
 ## ⚙️ Tech Stack
--Kotlin
--Model-View-ViewModel (MVVM)
--Room Database
+- Kotlin
+- Model-View-ViewModel (MVVM)
+- Room Database
